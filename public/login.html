@@ -1,0 +1,200 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In - FairVoice</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <section class="card" style="max-width: 520px; margin: 0 auto;">
+        <header class="main-header">
+          <h1>Sign In to FairVoice</h1>
+          <p>Use your email and password to sign in, or create a new account for reporting workplace misconduct.</p>
+        </header>
+        <form id="login-form" onsubmit="app.handleLogin(event)">
+          <div style="display:grid; gap:12px; margin-bottom:16px;">
+            <label>
+              <input type="radio" name="auth-type" value="user" checked onchange="app.updateAdminLoginFields()" /> End user
+            </label>
+            <label>
+              <input type="radio" name="auth-type" value="admin" onchange="app.updateAdminLoginFields()" /> Administrator / Suprime Administrator / NGO
+            </label>
+          </div>
+          <div style="display:grid; gap:12px; margin-bottom:16px;">
+            <label class="mode-label">
+              <input type="radio" name="auth-mode" value="signin" checked onchange="app.updateAdminLoginFields()" /> Sign in
+            </label>
+            <label class="mode-label">
+              <input type="radio" name="auth-mode" value="signup" onchange="app.updateAdminLoginFields()" /> Create account
+            </label>
+          </div>
+          <label for="email">Email</label>
+          <input id="email" type="email" required />
+          <label for="name">Full Name</label>
+          <input id="name" type="text" />
+          <label for="password">Password</label>
+          <input id="password" type="password" required minlength="6" />
+          <div id="admin-role-row" class="hidden">
+            <label for="admin-role">Admin Role</label>
+            <select id="admin-role">
+              <option value="Administrator">Administrator</option>
+              <option value="Suprime Administrator">Suprime Administrator</option>
+              <option value="NGO/INGO">INGO / NGO</option>
+            </select>
+          </div>
+          <div id="setup-key-row" class="hidden">
+            <label for="setup-key">Admin setup key</label>
+            <input id="setup-key" type="password" minlength="6" />
+          </div>
+          <button type="submit">Continue</button>
+        </form>
+        <div class="note">
+          End users sign in with Firebase authentication. Administrators use local database authentication. Use admin registration only when you have the setup key.
+        </div>
+      </section>
+    </main>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="app.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        if (typeof app !== 'undefined' && app.updateAdminLoginFields) {
+          app.updateAdminLoginFields();
+        }
+      });
+    </script>
+  </body>
+</html>
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fair Voice Login</title>
+
+<link rel="stylesheet" href="styles.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Left Side -->
+
+    <div class="left">
+
+        <div class="overlay">
+
+            <h1>Fair Voice</h1>
+
+            <p>
+                A secure platform to report discrimination,
+                harassment, workplace abuse, and gender-based violence.
+            </p>
+
+            <ul>
+
+                <li>✔ Secure Reporting</li>
+                <li>✔ Anonymous Option</li>
+                <li>✔ NGO Support</li>
+                <li>✔ Real-Time Case Tracking</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    <!-- Right Side -->
+
+    <div class="right">
+
+        <form class="login-box">
+
+            <img src="assets/images/logo.png" class="logo">
+
+            <h2>Welcome Back</h2>
+
+            <p>Sign in to continue</p>
+
+            <div class="input-box">
+
+                <i class="fa fa-envelope"></i>
+
+                <input
+                type="email"
+                placeholder="Email Address"
+                required>
+
+            </div>
+
+            <div class="input-box">
+
+                <i class="fa fa-lock"></i>
+
+                <input
+                type="password"
+                placeholder="Password"
+                required>
+
+            </div>
+
+            <div class="row">
+
+                <label>
+
+                    <input type="checkbox">
+
+                    Remember Me
+
+                </label>
+
+                <a href="#">Forgot Password?</a>
+
+            </div>
+
+            <button>
+
+                Login
+
+            </button>
+
+            <div class="divider">
+
+                OR
+
+            </div>
+
+            
+
+            <p class="register">
+
+                Don't have an account?
+
+                <a href="register.html">Create Account</a>
+
+            </p>
+            <button>
+
+                <a href="index.html">Back</a>
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

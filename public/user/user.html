@@ -1,0 +1,328 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Dashboard - FairVoice</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="main-header">
+        <h1>End User Dashboard</h1>
+        <p>Submit a report and track its status through administrator and NGO escalation levels.</p>
+      </header>
+      <div style="display:flex; gap:24px; flex-wrap:wrap;">
+        <div style="flex:1; min-width:240px;">
+          <nav class="sidebar">
+            <ul>
+              <li><a href="#new-report" class="active">New Report</a></li>
+              <li><a href="#view-report">View Reports</a></li>
+              <li><a href="#status">Report Status</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="card" style="flex:3; min-width:320px;">
+          <div class="note">
+            Signed in as <strong id="user-email"></strong>. <button onclick="app.signOut()" class="secondary">Sign out</button>
+          </div>
+          <section id="new-report">
+            <h2>Create a New Report</h2>
+            <form id="new-report-form" onsubmit="app.submitReport(event)">
+              <label for="report-title">Report Title</label>
+              <input id="report-title" type="text" required />
+              <label for="report-description">Description</label>
+              <textarea id="report-description" rows="5" required></textarea>
+              <label for="evidence">Upload Evidence (optional)</label>
+              <input id="evidence" type="file" accept="image/*,application/pdf" />
+              <button type="button" onclick="app.uploadEvidence(event)">Upload Evidence</button>
+              <input id="evidence-path" type="hidden" />
+              <button type="submit">Submit Report</button>
+            </form>
+          </section>
+          <section id="view-report" style="margin-top:32px;">
+            <h2>Your Reports</h2>
+            <div class="table-wrapper">
+              <table id="report-list">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Owner</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                    <th>Evidence</th>
+                    <th>Notes</th>
+                    <th>Escalate</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </section>
+          <section id="status" style="margin-top:32px;">
+            <h2>Escalation Flow</h2>
+            <p>Submit your report to the administrator. If the issue is unresolved, escalate it to the Suprime Administrator or INGO/NGO.</p>
+            <div class="note">
+              Use the button in the report list to escalate an active report to the next review level.
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="app.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        app.requireLoggedIn('user');
+      });
+    </script>
+  </body>
+</html>
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fair Voice - User Dashboard</title>
+
+<link rel="stylesheet" href="/public/user/css/user.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <h2>Fair Voice</h2>
+
+        <ul>
+
+            <li class="active"><i class="fa fa-home"></i> Dashboard</li>
+            <li><i class="fa fa-file-circle-plus"></i><a href="new-report.html">New Report</a> </li>
+            <li><i class="fa fa-folder-open"></i> My Reports</li>
+            <li><i class="fa fa-chart-line"></i> Report Status</li>
+            <li><i class="fa fa-bell"></i> Notifications</li>
+            <li><i class="fa fa-arrow-up-right-dots"></i> Escalation</li>
+            <li><i class="fa fa-hand-holding-heart"></i> NGO Support</li>
+            <li><i class="fa fa-circle-question"></i> Help Center</li>
+            <li><i class="fa fa-gear"></i> Settings</li>
+
+        </ul>
+
+        <button class="logout">
+            <i class="fa fa-right-from-bracket"></i> Logout
+        </button>
+
+    </aside>
+
+
+    <!-- Main -->
+
+    <main>
+
+        <!-- Navbar -->
+
+        <header>
+
+            <div class="search-box">
+                <input type="text" placeholder="Search...">
+            </div>
+
+            <div class="profile">
+                <img src="https://i.pravatar.cc/40">
+                <span>Bhaskar</span>
+            </div>
+
+        </header>
+
+
+        <!-- Welcome -->
+
+        <section class="welcome">
+
+            <h1>Welcome, Bhaskar 👋</h1>
+
+        </section>
+
+
+        <!-- Cards -->
+
+        <section class="cards">
+
+            <div class="card">
+                <h3>Total Reports</h3>
+                <h2>25</h2>
+            </div>
+
+            <div class="card">
+                <h3>Pending</h3>
+                <h2>8</h2>
+            </div>
+
+            <div class="card">
+                <h3>In Review</h3>
+                <h2>6</h2>
+            </div>
+
+            <div class="card">
+                <h3>Resolved</h3>
+                <h2>9</h2>
+            </div>
+
+            <div class="card">
+                <h3>Escalated</h3>
+                <h2>2</h2>
+            </div>
+
+        </section>
+
+
+        <!-- Progress -->
+
+        <section class="box">
+
+            <div class="title">Report Progress</div>
+
+            <div class="timeline">
+
+                <div class="step completed">
+                    ✔ Submitted
+                </div>
+
+                <div class="step completed">
+                    ✔ Organization Review
+                </div>
+
+                <div class="step active">
+                    ⏳ Investigation
+                </div>
+
+                <div class="step">
+                    Resolution
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Table -->
+
+        <section class="box">
+
+            <div class="title">
+                Recent Reports
+            </div>
+
+            <table>
+
+                <tr>
+
+                    <th>Report ID</th>
+                    <th>Category</th>
+                    <th>Organization</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Action</th>
+
+                </tr>
+
+                <tr>
+
+                    <td>#FV-1001</td>
+                    <td>Harassment</td>
+                    <td>ABC Company</td>
+                    <td><span class="pending">Pending</span></td>
+                    <td>05 Aug</td>
+                    <td><button>View</button></td>
+
+                </tr>
+
+                <tr>
+
+                    <td>#FV-1002</td>
+                    <td>Discrimination</td>
+                    <td>XYZ Ltd</td>
+                    <td><span class="review">Reviewing</span></td>
+                    <td>04 Aug</td>
+                    <td><button>View</button></td>
+
+                </tr>
+
+                <tr>
+
+                    <td>#FV-1003</td>
+                    <td>Workplace Abuse</td>
+                    <td>Tech Nepal</td>
+                    <td><span class="resolved">Resolved</span></td>
+                    <td>01 Aug</td>
+                    <td><button>View</button></td>
+
+                </tr>
+
+            </table>
+
+        </section>
+
+
+        <!-- Quick Actions -->
+
+        <section class="box">
+
+            <div class="title">
+
+                Quick Actions
+
+            </div>
+
+            <div class="actions">
+
+                <button>➕ New Report</button>
+
+                <button>🚨 Emergency Help</button>
+
+                <button>🤝 Contact NGO</button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Notifications -->
+
+        <section class="box">
+
+            <div class="title">
+
+                Latest Notifications
+
+            </div>
+
+            <ul class="notifications">
+
+                <li>Organization accepted your report.</li>
+
+                <li>Case escalated to Supreme Admin.</li>
+
+                <li>NGO support is available.</li>
+
+            </ul>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>

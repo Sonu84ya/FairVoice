@@ -1,0 +1,648 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>INGO / NGO Dashboard - FairVoice</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="main-header">
+        <h1>INGO / NGO Dashboard</h1>
+        <p>Deliver legal support and final review for cases escalated beyond internal administration.</p>
+      </header>
+      <section class="card">
+        <div class="note">
+          Signed in as <strong id="user-email"></strong>. <button onclick="app.signOut()" class="secondary">Sign out</button>
+        </div>
+        <div class="table-wrapper" style="margin-top:16px;">
+          <table id="admin-report-list">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>User</th>
+                <th>Level</th>
+                <th>Status</th>
+                <th>Created</th>
+                <th>Evidence</th>
+                <th>Notes</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div id="action-modal" class="card hidden" style="margin-top:24px;">
+          <h2>Update Report</h2>
+          <form id="action-form" onsubmit="app.submitAction(event)">
+            <input id="selected-report-id" type="hidden" />
+            <label for="action-status">Choose status</label>
+            <select id="action-status" required>
+              <option value="In Review">In Review</option>
+              <option value="Action Taken">Action Taken</option>
+              <option value="Closed">Closed</option>
+            </select>
+            <label for="action-notes">Notes</label>
+            <textarea id="action-notes" rows="4"></textarea>
+            <button type="submit">Save</button>
+            <button type="button" class="secondary" onclick="app.closeActionModal()">Cancel</button>
+          </form>
+        </div>
+      </section>
+      <div class="footer-note">Complete remediation and close cases that have been reviewed by your organization.</div>
+    </main>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="app.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        app.requireLoggedIn('admin');
+      });
+    </script>
+  </body>
+</html>
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fair Voice NGO Dashboard</title>
+
+    <link rel="stylesheet" href="ngo-dashboard.css">
+</head>
+
+<body>
+
+
+<div class="dashboard">
+
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+<h2>
+    Fair Voice
+</h2>
+
+<p class="role">
+    NGO Dashboard
+</p>
+
+
+<ul>
+
+<li class="active">Dashboard</li>
+<li>Escalated Cases</li>
+<li>Active Support</li>
+<li>Rescue Requests</li>
+<li>Volunteers</li>
+<li>Organizations</li>
+<li>Users Assisted</li>
+<li>Reports</li>
+<li>Notifications</li>
+<li>Settings</li>
+
+<li class="logout">
+Logout
+</li>
+
+</ul>
+
+</aside>
+
+
+
+
+
+<!-- MAIN CONTENT -->
+
+<main class="content">
+
+
+<header>
+
+<div>
+
+<h1>
+Welcome, Helping Hands Nepal 👋
+</h1>
+
+</div>
+
+
+<div class="top">
+
+<input type="search" placeholder="Search">
+
+<button>
+NGO Profile
+</button>
+
+</div>
+
+
+</header>
+
+
+
+
+
+<!-- STAT CARDS -->
+
+
+<section class="cards">
+
+
+<div class="card">
+
+<h3>New Cases</h3>
+
+<span>
+24
+</span>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>Active</h3>
+
+<span>
+12
+</span>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>Resolved</h3>
+
+<span>
+58
+</span>
+
+</div>
+
+
+
+<div class="card emergency">
+
+<h3>Emergency</h3>
+
+<span>
+3
+</span>
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+<!-- EMERGENCY CASES -->
+
+<section class="panel">
+
+
+<h2>
+Emergency Cases
+</h2>
+
+
+<table>
+
+
+<tr>
+
+<th>
+Report ID
+</th>
+
+<th>
+Priority
+</th>
+
+
+<th>
+Case Type
+</th>
+
+
+<th>
+Location
+</th>
+
+
+<th>
+Action
+</th>
+
+
+</tr>
+
+<tr>
+
+<td>
+#FV-2034
+</td>
+
+<td class="high">
+High Priority
+</td>
+
+<td>
+Workplace Violence
+</td>
+
+<td>
+Kathmandu
+</td>
+
+<td>
+<button>
+Accept Case
+</button>
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>
+#FV-2035
+</td>
+
+<td class="critical">
+Critical
+</td>
+
+<td>
+Domestic Abuse
+</td>
+
+<td>
+Lalitpur
+</td>
+
+<td>
+<button>
+Accept Case
+</button>
+</td>
+
+</tr>
+
+
+
+
+<tr>
+
+<td>
+#FV-2036
+</td>
+
+<td class="high">
+High Priority
+</td>
+
+<td>
+Harassment
+</td>
+
+<td>
+Birgunj
+</td>
+
+<td>
+<button>
+Accept Case
+</button>
+</td>
+
+</tr>
+
+
+
+</table>
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- ACTIVE SUPPORT -->
+
+<section class="panel">
+
+
+<h2>
+Active Support Cases
+</h2>
+
+
+<table>
+
+
+<tr>
+
+<th>
+Report ID
+</th>
+
+<th>
+Victim
+</th>
+
+
+<th>
+Assigned Volunteer
+</th>
+
+
+<th>
+Status
+</th>
+
+
+<th>
+Last Update
+</th>
+
+
+<th>
+Action
+</th>
+
+
+</tr>
+
+
+
+<tr>
+
+<td>
+#FV-1980
+</td>
+
+
+<td>
+Anonymous
+</td>
+
+
+<td>
+Ram Sharma
+</td>
+
+
+<td>
+Counseling
+</td>
+
+
+<td>
+Today
+</td>
+
+
+<td>
+<button>
+View
+</button>
+</td>
+
+
+</tr>
+
+
+
+
+
+<tr>
+
+<td>
+#FV-1971
+</td>
+
+
+<td>
+Anonymous
+</td>
+
+
+<td>
+Sita KC
+</td>
+
+
+<td>
+Shelter
+</td>
+
+
+<td>
+Yesterday
+</td>
+
+
+<td>
+<button>
+Update
+</button>
+</td>
+
+
+</tr>
+
+
+
+</table>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- RESOURCES -->
+
+
+<section class="resources">
+
+
+<h2>
+NGO Resources
+</h2>
+
+
+<div class="resource-box">
+
+
+<div>
+<h3>
+Volunteers
+</h3>
+
+<p>
+45
+</p>
+
+</div>
+
+
+
+<div>
+
+<h3>
+Safe Houses
+</h3>
+
+<p>
+12
+</p>
+
+</div>
+
+
+
+<div>
+
+<h3>
+Legal Partners
+</h3>
+
+<p>
+8
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- QUICK ACTION -->
+
+
+<section>
+
+
+<h2>
+Quick Actions
+</h2>
+
+
+<div class="actions">
+
+
+<button>
+Accept Case
+</button>
+
+
+<button>
+Add Volunteer
+</button>
+
+
+<button>
+Contact User
+</button>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- NOTIFICATIONS -->
+
+
+<section class="notification">
+
+
+<h2>
+Recent Notifications
+</h2>
+
+
+<ul>
+
+<li>
+Supreme Admin transferred Case #FV-2034.
+</li>
+
+
+<li>
+Emergency request received from Birgunj.
+</li>
+
+
+<li>
+Volunteer Ram Sharma accepted assignment.
+</li>
+
+
+</ul>
+
+
+</section>
+
+
+
+</main>
+
+
+
+</div>
+
+
+<script src="assets/js/ngo-dashboard.js"></script>
+
+
+</body>
+</html>

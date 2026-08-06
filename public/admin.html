@@ -1,0 +1,210 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administrator Dashboard - FairVoice</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="main-header">
+        <h1>Administrator Dashboard</h1>
+        <p>Receive the latest reports from employees and take action through the queue.</p>
+      </header>
+      <section class="card">
+        <div class="note">
+          Signed in as <strong id="user-email"></strong>. <button onclick="app.signOut()" class="secondary">Sign out</button>
+        </div>
+        <div class="table-wrapper" style="margin-top:16px;">
+          <table id="admin-report-list">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>User</th>
+                <th>Level</th>
+                <th>Status</th>
+                <th>Created</th>
+                <th>Evidence</th>
+                <th>Notes</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div id="action-modal" class="card hidden" style="margin-top:24px;">
+          <h2>Update Report</h2>
+          <form id="action-form" onsubmit="app.submitAction(event)">
+            <input id="selected-report-id" type="hidden" />
+            <label for="action-status">Choose status</label>
+            <select id="action-status" required>
+              <option value="In Review">In Review</option>
+              <option value="Action Taken">Action Taken</option>
+              <option value="Escalated to Suprime Administrator">Escalated to Suprime Administrator</option>
+            </select>
+            <label for="action-notes">Notes</label>
+            <textarea id="action-notes" rows="4"></textarea>
+            <button type="submit">Save</button>
+            <button type="button" class="secondary" onclick="app.closeActionModal()">Cancel</button>
+          </form>
+        </div>
+      </section>
+      <div class="footer-note">If a report is not resolved, escalate it to the Suprime Administrator using the action dropdown.</div>
+    </main>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="app.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        app.requireLoggedIn('admin');
+      });
+    </script>
+  </body>
+</html>
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fair Voice - Supreme Admin</title>
+
+<link rel="stylesheet" href="dashboard.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            Fair Voice
+        </div>
+
+        <ul>
+
+            <li class="active">
+                <i class="fa-solid fa-chart-line"></i>
+                Dashboard
+            </li>
+
+            <li>
+                <i class="fa-solid fa-building"></i>
+                Organizations
+            </li>
+
+            <li>
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                Escalated Cases
+            </li>
+
+            <li>
+                <i class="fa-solid fa-hand-holding-heart"></i>
+                NGOs
+            </li>
+
+            <li>
+                <i class="fa-solid fa-chart-column"></i>
+                Analytics
+            </li>
+
+            <li>
+                <i class="fa-solid fa-bell"></i>
+                Notifications
+            </li>
+
+            <li>
+                <i class="fa-solid fa-gear"></i>
+                Settings
+            </li>
+
+            <li class="logout">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main -->
+
+    <main class="main">
+
+        <!-- Navbar -->
+
+        <header class="navbar">
+
+            <h2>Supreme Admin Dashboard</h2>
+
+            <div class="top-right">
+
+                <div class="search-box">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input type="text" placeholder="Search">
+
+                </div>
+
+                <div class="profile">
+
+                    <img src="https://i.pravatar.cc/100">
+
+                    <span>Admin</span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- Dashboard -->
+
+        <section class="dashboard">
+
+            <h3>National Overview</h3>
+
+            <div class="cards">
+
+                <div class="card">
+                    <h2>182</h2>
+                    <p>Total Organizations</p>
+                </div>
+
+                <div class="card">
+                    <h2>42</h2>
+                    <p>Escalated Cases</p>
+                </div>
+
+                <div class="card">
+                    <h2>29</h2>
+                    <p>NGOs</p>
+                </div>
+
+                <div class="card">
+                    <h2>351</h2>
+                    <p>Active Reports</p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>
