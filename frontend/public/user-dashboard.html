@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Dashboard · Safe Reporting Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="dash-shell">
+  <div id="sidebarMount"></div>
+
+  <main class="main">
+    <div class="topbar">
+      <div>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">☰ Menu</button>
+        <h1 id="pageTitle">New Report</h1>
+        <p class="sub" id="pageSub">File a confidential report. You control how much you share.</p>
+      </div>
+    </div>
+
+    <div id="viewNew" class="view">
+      <div class="panel" style="max-width:720px;">
+        <div class="form-error" id="reportError"></div>
+        <div class="form-success" id="reportSuccess"></div>
+        <form id="reportForm">
+          <div class="field">
+            <label for="category">What type of issue are you reporting?</label>
+            <select id="category" required>
+              <option value="">Select a category…</option>
+              <option value="harassment">Harassment</option>
+              <option value="gender_discrimination">Gender Discrimination</option>
+              <option value="bullying">Bullying</option>
+              <option value="abuse">Abuse</option>
+              <option value="unfair_treatment">Unfair Treatment</option>
+              <option value="mental_harassment">Mental Harassment</option>
+              <option value="toxic_workplace">Toxic Workplace Behaviour</option>
+              <option value="safety_violation">Safety Violation</option>
+              <option value="other">Other Misconduct</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="title">Short title</label>
+            <input type="text" id="title" required maxlength="200" placeholder="e.g. Repeated inappropriate comments in team meetings">
+          </div>
+
+          <div class="field">
+            <label for="description">What happened?</label>
+            <textarea id="description" required placeholder="Describe the incident(s) — dates, what was said or done, and how it affected you. Include as much detail as you're comfortable sharing."></textarea>
+          </div>
+
+          <div style="display:flex; gap:14px;">
+            <div class="field" style="flex:1;">
+              <label for="incident_date">Date it happened <span style="font-weight:400;color:#8b9c9e;">(optional)</span></label>
+              <input type="date" id="incident_date">
+            </div>
+            <div class="field" style="flex:1;">
+              <label for="priority">How urgent is this?</label>
+              <select id="priority">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+                <option value="critical">Critical — immediate safety risk</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="location">Location <span style="font-weight:400;color:#8b9c9e;">(optional)</span></label>
+            <input type="text" id="location" placeholder="e.g. 4th floor office, Warehouse B">
+          </div>
+
+          <div class="field">
+            <label for="accused_info">Who is this about? <span style="font-weight:400;color:#8b9c9e;">(optional, only if you're comfortable)</span></label>
+            <input type="text" id="accused_info" placeholder="Name, role, or department">
+          </div>
+
+          <div class="field">
+            <label>Evidence <span style="font-weight:400;color:#8b9c9e;">(optional — images, PDFs, audio, video, up to 5 files)</span></label>
+            <div class="file-drop" id="fileDrop">Click to choose files or drag them here</div>
+            <input type="file" id="fileInput" multiple hidden accept="image/*,application/pdf,.doc,.docx,audio/*,video/mp4">
+            <div class="file-chip-list" id="fileChipList"></div>
+          </div>
+
+          <div class="checkbox-row">
+            <input type="checkbox" id="is_anonymous">
+            <div>
+              <label for="is_anonymous">Submit this report anonymously</label>
+              <div class="sub">Your name will be hidden from Administrators, Supreme Administrators, and NGOs. You'll still be able to track its status here.</div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="submitReportBtn">Submit report securely</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="viewList" class="view" style="display:none;">
+      <div class="panel">
+        <div class="panel-head"><h2 id="listTitle">My Reports</h2></div>
+        <div class="filter-tabs" id="filterTabs"></div>
+        <div id="reportListMount"><div class="loader"><div class="spinner"></div> Loading your reports…</div></div>
+      </div>
+    </div>
+
+    <div id="viewResources" class="view" style="display:none;">
+      <div class="panel">
+        <div class="panel-head"><h2>Support Resources</h2></div>
+        <div id="resourceMount"><div class="loader"><div class="spinner"></div> Loading resources…</div></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/dashboard-common.js"></script>
+<script src="js/user-dashboard.js"></script>
+</body>
+</html>

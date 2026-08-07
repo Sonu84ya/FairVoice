@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In · Gender Equality &amp; Safe Reporting Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="auth-shell">
+  <div class="auth-hero">
+    <div class="brand">Workplace Safe Reporting</div>
+    <div>
+      <h1>A safer way to speak up, at every level.</h1>
+      <p class="lede">Report harassment, discrimination, and misconduct securely. Track it from your manager's desk to an independent NGO — with nothing lost along the way.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar"><div class="num">01</div><p>Report anonymously or openly, with evidence attached.</p></div>
+      <div class="pillar"><div class="num">02</div><p>Every case is tracked through Admin, Supreme Admin, and NGO review.</p></div>
+      <div class="pillar"><div class="num">03</div><p>If it stalls, you can escalate it yourself — all the way to legal action.</p></div>
+    </div>
+  </div>
+
+  <div class="auth-panel">
+    <div class="auth-card">
+      <div class="eyebrow">Sign in</div>
+      <h2>Welcome back</h2>
+      <p class="sub">Sign in to file a report or manage your case queue.</p>
+
+      <div class="form-error" id="loginError"></div>
+
+      <form id="loginForm">
+        <div class="field">
+          <label for="email">Work email</label>
+          <input type="email" id="email" name="email" autocomplete="email" required placeholder="you@company.com">
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" autocomplete="current-password" required placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn btn-primary" id="loginBtn">Sign in</button>
+      </form>
+
+      <p class="auth-switch">New here? <a href="register.html">Create an employee account</a></p>
+
+      <div class="panel" style="margin-top:26px; padding:16px 18px;">
+        <p style="font-size:0.82rem; color:#55696c; margin:0 0 8px; font-weight:600;">Demo accounts (password: Password123!)</p>
+        <p style="font-size:0.78rem; color:#6b7f81; margin:0; line-height:1.7;">
+          employee@demo.com — Employee<br>
+          admin@demo.com — Administrator<br>
+          supreme@demo.com — Supreme Administrator<br>
+          ngo@demo.com — NGO / INGO
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script>
+  // If already logged in, skip straight to the right dashboard.
+  (function () {
+    const user = Auth.getUser();
+    if (user && Auth.getToken()) window.location.href = roleHome(user.role);
+  })();
+
+  const form = document.getElementById('loginForm');
+  const errBox = document.getElementById('loginError');
+  const btn = document.getElementById('loginBtn');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errBox.classList.remove('show');
+    btn.disabled = true;
+    btn.textContent = 'Signing in…';
+    try {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const data = await apiFetch('/auth/login', { method: 'POST', body: { email, password } });
+      Auth.setSession(data.token, data.user);
+      window.location.href = roleHome(data.user.role);
+    } catch (err) {
+      errBox.textContent = err.message;
+      errBox.classList.add('show');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Sign in';
+    }
+  });
+</script>
+</body>
+</html>

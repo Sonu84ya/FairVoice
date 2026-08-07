@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Administrator Dashboard · Safe Reporting Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="dash-shell">
+  <div id="sidebarMount"></div>
+
+  <main class="main">
+    <div class="topbar">
+      <div>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">☰ Menu</button>
+        <h1 id="pageTitle">My Queue</h1>
+        <p class="sub" id="pageSub">Cases currently assigned to you, ordered by priority.</p>
+      </div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card"><div class="stat-label">In Your Queue</div><div class="stat-value" id="statQueue">—</div></div>
+      <div class="stat-card accent"><div class="stat-label">High / Critical</div><div class="stat-value" id="statHigh">—</div></div>
+      <div class="stat-card"><div class="stat-label">Resolved by You</div><div class="stat-value" id="statResolved">—</div></div>
+      <div class="stat-card"><div class="stat-label">Platform-wide Reports</div><div class="stat-value" id="statTotal">—</div></div>
+    </div>
+
+    <div id="viewQueue" class="view">
+      <div class="panel">
+        <div class="panel-head"><h2>My Queue</h2></div>
+        <div id="queueMount"><div class="loader"><div class="spinner"></div> Loading…</div></div>
+      </div>
+    </div>
+
+    <div id="viewAll" class="view" style="display:none;">
+      <div class="panel">
+        <div class="panel-head"><h2>All Reports</h2></div>
+        <div class="filter-tabs" id="allFilterTabs"></div>
+        <div id="allMount"><div class="loader"><div class="spinner"></div> Loading…</div></div>
+      </div>
+    </div>
+
+    <div id="viewResources" class="view" style="display:none;">
+      <div class="panel">
+        <div class="panel-head"><h2>Support Resources</h2></div>
+        <div id="resourceMount"><div class="loader"><div class="spinner"></div> Loading…</div></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/dashboard-common.js"></script>
+<script src="js/staff-dashboard.js"></script>
+<script>
+  initStaffDashboard({
+    role: 'admin',
+    canEscalate: true,
+    escalateLabel: 'Supreme Administrator',
+    canLegalAction: false
+  });
+</script>
+</body>
+</html>
