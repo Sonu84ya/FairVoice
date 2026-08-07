@@ -56,7 +56,7 @@ gender-equality-platform/
 
 
 
-1. An employee submits a report from **New Report**. It's created with
+1. An employee submits a report from New Report. It's created with
    status = submitted and current_level = admin.
    
 3. It appears in the Administrators priority-ordered queue
@@ -78,7 +78,7 @@ gender-equality-platform/
 13. Every step is recorded on the report's timeline, visible to the employee
    and to staff, for full accountability.
 
-#Se curity notes
+# Security notes
 
 - Passwords are hashed with bcrypt (12 rounds); JWTs expire after 8 hours
   by default.
